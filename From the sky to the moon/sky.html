@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<title>SKY</title>
+	<link rel="stylesheet" type="text/css" href="From the sky to the moon.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script type="text/javascript" src="From the sky to the moon.js"></script> 
+</head>
+<body>
+	<div ng-app="myApp">
+    	<div ng-controller="exemple1Ctrl">
+    	<label for="image1"><img id="image1" src="{{image}}.jpg">
+	   	<label for="lieux1"><b id="lieux1" ng-bind = "lieuxChoisi()"> </b></label></br>
+		<label for="button1"><a href="moon.html"><button id="button1" name="button"><b id="lieux1" ng-bind = "quelLieux(0)"> </b></button></a></label>
+		</div>
+	</div>
+
+</body>
+</html>

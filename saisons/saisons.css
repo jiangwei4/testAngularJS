@@ -1,0 +1,8 @@
+label{
+	display: block;
+	width: 150px;
+	float: left;
+	text-align:center;
+    line-height:150%;
+    font-size:.85em;
+}

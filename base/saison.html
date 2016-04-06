@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="saisons.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script type="text/javascript" src="saisons.js"></script> 
+
+</head>
+<body>
+<div ng-app="app">
+    <div ng-controller="SomeController">
+        <accordion>
+            <expander class="expander" expander-title="expander.title" ng-repeat="expander in expanders">
+                {{expander.text}}
+            </expander>
+        </accordion>
+    </div>
+</div>
+</body>
+</html>

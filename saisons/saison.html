@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<title>SAISON</title>
+	<link rel="stylesheet" type="text/css" href="saisons.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script type="text/javascript" src="saisons.js"></script> 
+</head>
+<body>
+	<div ng-app="myApp">
+    	<div ng-controller="exemple1Ctrl">
+    		<label for="image1"><img id="image1" src="{{saison}}.gif">
+    		<label for="saison1"><b id="saison1" ng-bind = "dateChoisi()"> </b></label></br>
+    		<label for="date1">
+    	    	<input type="date" id="date1" min="2016-01-01" max="2016-12-31" ng-model="date" />
+    		</label>
+		</div>
+	</div>
+</body>
+</html>
