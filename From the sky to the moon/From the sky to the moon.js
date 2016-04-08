@@ -18,3 +18,11 @@ myApp.controller("exemple1Ctrl", function($scope){
             return $scope.lieux;
     } 
 });
+function changerPage(int){
+        if(int==0){
+            window.location="sky.html";
+        }else{
+            window.location="moon.html";
+        }
+    }
+

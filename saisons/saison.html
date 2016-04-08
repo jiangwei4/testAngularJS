@@ -9,10 +9,11 @@
 <body>
 	<div ng-app="myApp">
     	<div ng-controller="exemple1Ctrl">
-    		<label for="image1"><img id="image1" src="{{saison}}.gif">
-    		<label for="saison1"><b id="saison1" ng-bind = "dateChoisi()"> </b></label></br>
+    		<center><img id="image1" src="{{saison}}.gif"></center>
+    		</br>
+    		<center><b id="saison1" ng-bind = "dateChoisi()"></b></center>
     		<label for="date1">
-    	    	<input type="date" id="date1" min="2016-01-01" max="2016-12-31" ng-model="date" />
+    	    	<center><input type="date" id="date1" min="2016-01-01" max="2016-12-31" ng-model="date" /></center>
     		</label>
 		</div>
 	</div>

@@ -2,6 +2,8 @@
 <html>
 <head>
 <title>MOON</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<link rel="stylesheet" type="text/css" href="From the sky to the moon.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 	<script type="text/javascript" src="From the sky to the moon.js"></script> 
@@ -9,9 +11,9 @@
 <body>
 	<div ng-app="myApp">
     	<div ng-controller="exemple1Ctrl">
-    	<label for="image1"><img id="image1" src="{{image}}.jpg">
-	   	<label for="lieux1"><b id="lieux1" ng-bind = "lieuxChoisi()"> </b></label></br>
-		<label for="button1"><a href="sky.html"><button id="button1" name="button"><b id="lieux1" ng-bind = "quelLieux(1)"> </b></button></a></label>
+    	<center><img id="image1" src="{{image}}.jpg"></center>
+	   	<center><b id="lieux1" ng-bind = "lieuxChoisi()"> </b></center>
+		<button  class="w3-btn-block w3-ripple w3-purple w3-round-large" id="button1" name="button" onClick="changerPage(0)"><b id="lieux1" ng-bind = "quelLieux(1)"> </b>
 		</div>
 	</div>
 
