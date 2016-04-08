@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<title>La TodoList, le retour</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script type="text/javascript" src="pageDeConnection.js"></script> 
+	<link rel="stylesheet" type="text/css" href="pageDeConnection.css" />
+</head>
+<body>
+
+
+<div ng-app="myApp">  
+<div ng-controller="myCtrl">
+	<h1><center>S'identifer</center></h1>
+	<form class="w3-container">
+		<label class="w3-label w3-text-blue">
+			<b>Utilisateur</b>
+		</label>
+		<input type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="user" required>
+		<label class="w3-label w3-text-blue">
+			<b>Mot de passe</b>
+		</label>
+		<input type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="mdp" required>
+	</form>
+	</br>
+	<button ng-click="reset()" style="width:48%" class="w3-btn w3-ripple w3-red w3-btn w3-round-large">RESET</button>
+	<b>&nbsp;</b>
+	<button ng-click="save(user,mdp)" style="width:48%" class="w3-btn w3-ripple w3-purple w3-btn w3-round-large">SAVE</button>
+</div>
+
+
+
+<div ng-controller="myCtrl2">
+	<h1><center>S'enregistrer</center></h1>
+	<form class="w3-container">
+		<label class="w3-label w3-text-blue">
+			<b>Utilisateur</b>
+		</label>
+		<input type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="user" required>
+		<label class="w3-label w3-text-blue">
+			<b>Mot de passe</b>
+		</label>
+		<input type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="mdp" required>
+	</form>
+	</br>
+	<button ng-click="reset()" style="width:48%" class="w3-btn w3-ripple w3-red w3-btn w3-round-large">RESET</button>
+	<b>&nbsp;</b>
+	<button ng-click="save(user,mdp)" style="width:48%" class="w3-btn w3-ripple w3-purple w3-btn w3-round-large">SAVE</button>
+</div>
+</div>
+
+	<div id="contenue">
+	</div>
+
+
+</body>
+</body>
+</html>

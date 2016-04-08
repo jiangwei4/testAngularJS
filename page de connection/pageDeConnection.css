@@ -1,0 +1,14 @@
+body {
+    background-color: grey;
+}
+
+h1 {
+	 color: white;
+}
+
+input.ng-invalid {
+    background-color:pink;
+}
+input.ng-valid {
+    background-color:lightgreen;
+}
