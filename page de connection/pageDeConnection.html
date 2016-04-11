@@ -11,7 +11,9 @@
 <body>
 
 
-<div ng-app="myApp">  
+<div ng-app="myApp"> 
+<div id="sha1">
+</div>
 <div ng-controller="myCtrl">
 	<h1><center>S'identifer</center></h1>
 	<form class="w3-container" name="formulaire1">
@@ -23,10 +25,10 @@
 			<b>Mot de passe</b>
 		</label>
 		<input name="mdp1" type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="mdp" required>
-	</br>
+	<br/>
 	<button ng-click="reset()" style="width:48%" class="w3-btn w3-ripple w3-red w3-btn w3-round-large">RESET</button>
 	<b>&nbsp;</b>
-	<button ng-disabled="formulaire1.user1.$invalid || formulaire1.mdp1.$invalid" ng-click="save(user,mdp)" style="width:48%" class="w3-btn w3-ripple w3-purple w3-btn w3-round-large">SAVE</button>
+	<button  ng-disabled="formulaire1.user1.$invalid || formulaire1.mdp1.$invalid" ng-click="sendPost(user,mdp)" style="width:48%" class="w3-btn w3-ripple w3-purple w3-btn w3-round-large">SAVE</button>
 		</form>
 </div>
 
@@ -38,12 +40,12 @@
 		<label class="w3-label w3-text-blue">
 			<b>Utilisateur</b>
 		</label>
-		<input name="user2" type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="user" required>
+		<input id="login2" name="user2" type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="user" required>
 		<label class="w3-label w3-text-blue">
 			<b>Mot de passe</b>
 		</label>
-		<input name="mdp2" type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="mdp" required>
-	</br>
+		<input id="mdp2" name="mdp2" type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="mdp" required>
+	<br/>
 	<button  ng-click="reset()" style="width:48%" class="w3-btn w3-ripple w3-red w3-btn w3-round-large">RESET</button>
 	<b>&nbsp;</b>
 	<button ng-disabled="formulaire2.user2.$invalid || formulaire2.mdp2.$invalid" ng-click="save(user,mdp)" style="width:48%" class="w3-btn w3-ripple w3-purple w3-btn w3-round-large">SAVE</button>
