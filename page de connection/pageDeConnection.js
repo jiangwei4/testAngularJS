@@ -15,7 +15,11 @@ app.controller('myCtrl', function($scope,$http) {
         $scope.checkbox=false;
     };
     $scope.login=localStorage.login;
-    $scope.password=localStorage.password;
+    if(localStorage.password!=null && localStorage.password!=''){
+        $scope.password='*******';
+    }else {
+        $scope.password='';
+    };
     $scope.reset = function() {
         $scope.login = '';
         $scope.password='';
@@ -23,6 +27,8 @@ app.controller('myCtrl', function($scope,$http) {
     $scope.sendPost = function(champ1,champ2) {
        if (localStorage.password==false){
             champ2= SHA1(champ2).toString();
+       }else{
+        champ2=localStorage.password;
        };
        var json = {
         "login" : champ1,
