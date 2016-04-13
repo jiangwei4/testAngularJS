@@ -9,15 +9,21 @@ sessionStorage.description='';
 
 //se connecter
 app.controller('myCtrl', function($scope,$http) {
-    $scope.user='';
-    $scope.mdp='';
-    $scope.reset = function() {
-        $scope.user = '';
-        $scope.mdp='';
+    if(localStorage.checkbox=="true"){
+        $scope.checkbox=true;
+    }else {
+        $scope.checkbox=false;
     };
-    $scope.reset();
+    $scope.login=localStorage.login;
+    $scope.password=localStorage.password;
+    $scope.reset = function() {
+        $scope.login = '';
+        $scope.password='';
+    };
     $scope.sendPost = function(champ1,champ2) {
-       champ2= SHA1(champ2).toString();
+       if (localStorage.password==false){
+            champ2= SHA1(champ2).toString();
+       };
        var json = {
         "login" : champ1,
         "password" : champ2
@@ -34,6 +40,16 @@ app.controller('myCtrl', function($scope,$http) {
                 };
                 text+='<button  ng-click="ajouter()" class="w3-btn-block w3-round-large w3-purple">Add a new one</button></nav>';
            sessionStorage.t=text;
+           if($scope.checkbox==true){
+               localStorage.checkbox=true;
+               localStorage.login=champ1;
+               localStorage.password=champ2;
+                
+           }else{
+               localStorage.checkbox=false;
+               localStorage.login='';
+               localStorage.password='';
+           };
            window.location='todoliste.html';
             }else{
             alert(data.Error);
@@ -49,18 +65,17 @@ app.controller('myCtrl', function($scope,$http) {
             alert("! !");
             return null ;
         });
-          };
+    };
 });
 
 //s enregistrer
 app.controller('myCtrl2', function($scope,$http) {
-    $scope.user='';
-    $scope.mdp='';
+    $scope.login='';
+    $scope.password='';
     $scope.reset = function() {
-        $scope.user = '';
-        $scope.mdp='';
+        $scope.login = '';
+        $scope.password='';
     };
-    $scope.reset();
      $scope.save = function(champ1, champ2){
         champ2= SHA1(champ2).toString();
         var json = {
@@ -94,45 +109,8 @@ app.controller('myCtrl2', function($scope,$http) {
             alert("! !");
             return null ;
         });
-          };
+    };
 });
-
-
-//cookie
-/*
-function setCookie(cname,cnamevalue,cmdp,cmdpvalue,exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires=" + d.toGMTString();
-    document.cookie = cname+"="+cvalue+","+cmdp+"="+cmdpvalue+"; "+expires;
-}
-
-function getCookie(cname,cmdp) {
-    var name = cname + "=";
-    var mdp = cmdp + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function checkCookie() {
-    var user=getCookie("username");
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-       user = prompt("Please enter your name:","");
-       if (user != "" && user != null) {
-           setCookie("username", user, 30);
-       }
-    }
-}
-*/
 
 //encodage sha1
 function SHA1 (msg) {
