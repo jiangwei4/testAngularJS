@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<title>La TodoList, le retour</title>
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" type="text/css" href="pageDeConnection.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script type="text/javascript" src="todoliste.js"></script> 
+</head>
+<body>
+
+
+<div ng-app="myApp"> 
+	<div ng-controller="myCtrl3">
+		<h1><center>Edit TODO item</center></h1>
+		<form class="w3-container" name="formulaire3">
+			<label class="w3-label w3-text-blue">
+				<b>Title</b>
+			</label>
+			<input  name="title3" type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="title" required>
+			<label class="w3-label w3-text-blue">
+				<b>Description</b>
+			</label>
+			<input  name="description3" type="text" class="w3-input w3-border w3-round w3-hover-grey" ng-model="description" required>
+			<br/>
+			<button ng-disabled="formulaire3.title3.$invalid || formulaire3.description3.$invalid" style="width:100%" class="w3-btn w3-ripple w3-purple w3-round-large" ng-click="modifier(title,description)" >Save</button>
+		</form>
+	</div>
+</div>
+</body>
+</body>
+</html>

@@ -1,58 +1,16 @@
 var app = angular.module('myApp', []);
-/*
-app.service('dataService', function($http) {
-   this.getData = function() {
-      return $http({
-          method: 'GET',
-          url:'http://storm-project.fr/ios/api/register.php',       
-        //  url: 'https://github.com/jovaneyck/CrossDomainRequestsInJavascript/blob/master/5%20-%20iframe%20and%20postMessage/respondingServer.js',
-          headers: {'Authorization': 'Access-Control-Allow-Origin: *'}
-      }).success(function(data){
-        
-        document.getElementById('contenue').innerHTML=data;
-        return data;
-      }).error(function(){
-         alert("Votre navigateur ne gere pas l'AJAX cross-domain !");
-         return null ;
-      });
-   }
- });*/
 
-/*app.service('dataService', function($http) {
-   this.getData = function() {
-      return $http({
-          method: 'GET',
-          url:'http://storm-project.fr/ios/api/register.php',       
-        //  url: 'https://github.com/jovaneyck/CrossDomainRequestsInJavascript/blob/master/5%20-%20iframe%20and%20postMessage/respondingServer.js',
-          headers: {'Authorization': 'Access-Control-Allow-Origin: *'}
-      }).success(function(data){
-        
-        document.getElementById('contenue').innerHTML=data;
-        return data;
-      }).error(function(){
-         alert("Votre navigateur ne gere pas l'AJAX cross-domain !");
-         return null ;
-      });
-   }
- });*/
-/*
-app.controller('AngularJSCtrl', function($scope, dataService) {
-  $scope.data="null";
-  dataService.getData().then(function(response){
-     $scope.data = response;
+sessionStorage.t='';
+sessionStorage.login='';
+sessionStorage.password='';
+sessionStorage.id='';
+sessionStorage.title='';
+sessionStorage.description='';
 
-    });
-});
-*/
-
-
-
-
-
+//se connecter
 app.controller('myCtrl', function($scope,$http) {
     $scope.user='';
     $scope.mdp='';
-    $scope.master = {user: $scope.user, mdp: $scope.mdp};
     $scope.reset = function() {
         $scope.user = '';
         $scope.mdp='';
@@ -60,31 +18,44 @@ app.controller('myCtrl', function($scope,$http) {
     $scope.reset();
     $scope.sendPost = function(champ1,champ2) {
        champ2= SHA1(champ2).toString();
-        var text = {
-          "login": champ1,
-          "password": champ2
-        };
-      // var text = '{"login":"John Johnson","password":"Oslo"}';
-      //  var obj = JSON.parse(text);
-        document.getElementById('sha1').innerHTML="{ login : "+JSON.login+", password : "+JSON.password+" }";
-        return $http.post("http://storm-project.fr/ios/api/login.php", JSON).success(function(data, status) {
-            if(data.ok==true){
-              alert("connection etablie");
+       var json = {
+        "login" : champ1,
+        "password" : champ2
+       };
+       return $http.post("http://storage.preprod.videoencoding.ovh/api/login", json).success(function(data, status) {
+            if(data.Ok==true){
+            sessionStorage.login = json.login;
+            sessionStorage.password=json.password;
+            $http.post("http://storage.preprod.videoencoding.ovh/api/list",json).success(function(data, status) {
+            if(data.Ok==true){
+                var text='<nav class="w3-sidenav w3-grey" style="width:100%">';
+                for(var i in data.Resource){
+                   text+='<a href="#" ng-click="modifierSupprimer('+data.Resource[i].Id+')">'+data.Resource[i].Title+'</a>';
+                };
+                text+='<button  ng-click="ajouter()" class="w3-btn-block w3-round-large w3-purple">Add a new one</button></nav>';
+           sessionStorage.t=text;
+           window.location='todoliste.html';
             }else{
-            alert(data.error);
-          }
+            alert(data.Error);
+          };
+        }).error(function(){
+            alert("! !");
+        });
+            }else{
+            alert(data.Error);
+          };
             return data;
         }).error(function(){
-            alert("Votre navigateur ne gere pas l'AJAX cross-domain !");
+            alert("! !");
             return null ;
         });
-          } 
+          };
 });
 
+//s enregistrer
 app.controller('myCtrl2', function($scope,$http) {
     $scope.user='';
     $scope.mdp='';
-    $scope.master = {user: $scope.user, mdp: $scope.mdp};
     $scope.reset = function() {
         $scope.user = '';
         $scope.mdp='';
@@ -92,29 +63,78 @@ app.controller('myCtrl2', function($scope,$http) {
     $scope.reset();
      $scope.save = function(champ1, champ2){
         champ2= SHA1(champ2).toString();
-        var JSON = {
+        var json = {
           "login": champ1,
           "password": champ2
         };
-        document.getElementById('sha1').innerHTML="{ login : "+JSON.login+", password : "+JSON.password+" }";
-        return $http.post("http://storm-project.fr/ios/api/register.php", JSON).success(function(data, status) {
-           if(data.ok==true){
-              alert("connection etablie");
+        return $http.post("http://storage.preprod.videoencoding.ovh/api/register", json).success(function(data, status) {
+           if(data.Ok==true){
+            sessionStorage.login = json.login;
+            sessionStorage.password=json.password;
+            $http.post("http://storage.preprod.videoencoding.ovh/api/list",json).success(function(data, status) {
+            if(data.Ok==true){
+                var text='<nav class="w3-sidenav w3-grey" style="width:100%">';
+                for(var i in data.Resource){
+                    text+='<a href="#" ng-click="modifierSupprimer('+data.Resource[i].Id+')">'+data.Resource[i].Title+'</a>';
+                };
+                text+='<button  ng-click="ajouter()" class="w3-btn-block w3-round-large w3-purple">Add a new one</button></nav>';
+           sessionStorage.t=text;
+           window.location='todoliste.html';
             }else{
-            alert(data.error);
-          }
+            alert(data.Error);
+          };
+        }).error(function(){
+            alert("! !");
+        });
+            }else{
+            alert(data.Error);
+          };
             return data;
         }).error(function(){
-            alert("Votre navigateur ne gere pas l'AJAX cross-domain !");
+            alert("! !");
             return null ;
         });
-          } 
+          };
 });
 
 
+//cookie
+/*
+function setCookie(cname,cnamevalue,cmdp,cmdpvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+","+cmdp+"="+cmdpvalue+"; "+expires;
+}
 
+function getCookie(cname,cmdp) {
+    var name = cname + "=";
+    var mdp = cmdp + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+*/
 
+//encodage sha1
 function SHA1 (msg) {
 
     function rotate_left(n,s) {
