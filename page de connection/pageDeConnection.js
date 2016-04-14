@@ -1,6 +1,5 @@
 var app = angular.module('myApp', []);
 
-sessionStorage.t='';
 sessionStorage.login='';
 sessionStorage.password='';
 sessionStorage.id='';
@@ -36,33 +35,18 @@ app.controller('myCtrl', function($scope,$http) {
 		};
 		return $http.post("http://storage.preprod.videoencoding.ovh/api/login", json).success(function(data, status) {
 			if(data.Ok==true){
+				if($scope.checkbox==true){
+					localStorage.checkbox=true;
+					localStorage.login=champ1;
+					localStorage.password=champ2;
+				}else{
+					localStorage.checkbox=false;
+					localStorage.login='';
+					localStorage.password='';
+				};
 				sessionStorage.login = json.login;
 				sessionStorage.password=json.password;
-				$http.post("http://storage.preprod.videoencoding.ovh/api/list",json).success(function(data, status) {
-					if(data.Ok==true){
-						var text='<ul>';
-						for(var i in data.Resource){
-							text+='<li><a href="#" ng-click="modifierSupprimer('+data.Resource[i].Id+')">'+data.Resource[i].Title+'</a></li>';
-						};
-						text+='</ul>';
-						sessionStorage.t=text;
-						if($scope.checkbox==true){
-							localStorage.checkbox=true;
-							localStorage.login=champ1;
-							localStorage.password=champ2;
-
-						}else{
-							localStorage.checkbox=false;
-							localStorage.login='';
-							localStorage.password='';
-						};
-						window.location='todoliste.html';
-					}else{
-						alert(data.Error);
-					};
-				}).error(function(){
-					alert("! !");
-				});
+				window.location='todoliste.html';
 			}else{
 				alert(data.Error);
 			};
@@ -83,6 +67,7 @@ app.controller('myCtrl2', function($scope,$http) {
 		$scope.password='';
 	};
 	$scope.save = function(champ1, champ2){
+		localStorage.password==false;
 		champ2= SHA1(champ2).toString();
 		var json = {
 			"login": champ1,
@@ -92,21 +77,7 @@ app.controller('myCtrl2', function($scope,$http) {
 			if(data.Ok==true){
 				sessionStorage.login = json.login;
 				sessionStorage.password=json.password;
-				$http.post("http://storage.preprod.videoencoding.ovh/api/list",json).success(function(data, status) {
-					if(data.Ok==true){
-						var text='<ul>';
-						for(var i in data.Resource){
-							text+='<li><a href="#" ng-click="modifierSupprimer('+data.Resource[i].Id+')">'+data.Resource[i].Title+'</a></li>';
-						};
-						text+='</ul>';
-						sessionStorage.t=text;
-						window.location='todoliste.html';
-					}else{
-						alert(data.Error);
-					};
-				}).error(function(){
-					alert("! !");
-				});
+				window.location='todoliste.html';
 			}else{
 				alert(data.Error);
 			};

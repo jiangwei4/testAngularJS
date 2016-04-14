@@ -16,11 +16,15 @@
 <body>
 	<div ng-app="myApp"> 
 		<div ng-controller="myCtrl">
-			<expander></expander>
+			<ul>
+				<li ng-repeat="x in ressource">
+					<a href="#" ng-click="modifierSupprimer(x.Id)">{{x.Title}}</a>
+				</li>
+			</ul>
 			<footer>
 
 
-			<!-- Load Facebook SDK for JavaScript -->
+				<!-- Load Facebook SDK for JavaScript -->
 <!--	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -31,20 +35,13 @@
 	}(document, 'script', 'facebook-jssdk'));</script>  -->
 
 	<!-- Your share button code -->
-	<div class="fb-share-button" 
-		data-href="http://www.your-domain.com/your-page.html" 
-		data-layout="button_count">
+	<div class="fb-share-button" data-href="http://www.your-domain.com/your-page.html" data-layout="button_count">
 	</div> 
-
-
-				<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="InfoWebMaster">Tweet</a>
-				<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-
-				<button  ng-click="ajouter()" class="w3-btn-block w3-round-large w3-purple">Add a new one</button>
+	<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="InfoWebMaster">Tweet</a>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+	<button  ng-click="ajouter()" class="w3-btn-block w3-round-large w3-purple">Add a new one</button>
 			</footer>
-
 		</div>
 	</div>
-
 </body>
 </html>

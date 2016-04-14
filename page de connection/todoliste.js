@@ -19,6 +19,17 @@ app.controller('myCtrl', function($scope,$http) {
 		 // 	window.location='modifierSupprimer.html';
 		 window.location='afficherTODO.html';
 		};
+		var json2={
+			"login": sessionStorage.login,
+			"password": sessionStorage.password,
+		};
+		return $http.post("http://storage.preprod.videoencoding.ovh/api/list", json2).success(function(data) {
+			if(data.Ok==true){
+				$scope.ressource = data.Resource;
+			}else {
+				alert(data.Error);
+			};
+		});
 	});
 
 //ajouter todo
@@ -32,27 +43,9 @@ app.controller('myCtrl2', function($scope,$http) {
 			"title": title,
 			"description": description
 		};
-		var json2={
-			"login": sessionStorage.login,
-			"password": sessionStorage.password,
-		};
 		return $http.post("http://storage.preprod.videoencoding.ovh/api/add", json).success(function(data, status) {
 			if(data.Ok==true){
-				$http.post("http://storage.preprod.videoencoding.ovh/api/list",json2).success(function(data, status) {
-					if(data.Ok==true){
-						var text='<ul>';
-						for(var i in data.Resource){
-							text+='<li><a href="#" ng-click="modifierSupprimer('+data.Resource[i].Id+')">'+data.Resource[i].Title+'</a></li>';
-						};
-						text+='</ul>';
-						sessionStorage.t=text;
-						window.location='todoliste.html';
-					}else{
-						alert(data.Error);
-					};
-				}).error(function(){
-					alert("! !");
-				});
+				window.location='todoliste.html';
 			}else{
 				alert(data.Error);
 			};
@@ -77,30 +70,12 @@ app.controller('myCtrl3', function($scope,$http) {
 			"title": champ1,
 			"description": champ2
 		};
-		var json2={
-			"login": sessionStorage.login,
-			"password": sessionStorage.password,
-		};
 		return $http.post("http://storage.preprod.videoencoding.ovh/api/edit", json).success(function(data, status) {
 			if(data.Ok==true){
-				$http.post("http://storage.preprod.videoencoding.ovh/api/list",json).success(function(data, status) {
-					if(data.Ok==true){
-						var text='<ul>';
-						for(var i in data.Resource){
-							text+='<li><a href="#" ng-click="modifierSupprimer('+data.Resource[i].Id+')">'+data.Resource[i].Title+'</a></li>';
-						};
-						text+='</ul>';
-						sessionStorage.t=text;
-						sessionStorage.id='';
-						sessionStorage.title='';
-						sessionStorage.description='';
-						window.location='todoliste.html';
-					}else{
-						alert(data.Error);
-					};
-				}).error(function(){
-					alert("! !");
-				});
+				sessionStorage.id='';
+				sessionStorage.title='';
+				sessionStorage.description='';
+				window.location='todoliste.html';
 			}else{
 				alert(data.Error);
 			};
@@ -125,28 +100,9 @@ app.controller('myCtrl4', function($scope,$http) {
 				"password": sessionStorage.password,
 				"id": sessionStorage.id
 			};
-			var json2={
-				"login": sessionStorage.login,
-				"password": sessionStorage.password,
-			};
 			return $http.post("http://storage.preprod.videoencoding.ovh/api/delete", json).success(function(data, status) {
 				if(data.Ok==true){
-					$http.post("http://storage.preprod.videoencoding.ovh/api/list",json).success(function(data, status) {
-						if(data.Ok==true){
-							var text='<ul>';
-							for(var i in data.Resource){
-								text+='<li><a href="#" ng-click="modifierSupprimer('+data.Resource[i].Id+')">'+data.Resource[i].Title+'</a></li>';
-							};
-							text+='</ul>';
-							sessionStorage.t=text;
-							sessionStorage.id='';
-							window.location='todoliste.html';
-						}else{
-							alert(data.Error);
-						};
-					}).error(function(){
-						alert("! !");
-					});
+					window.location='todoliste.html';
 				}else{
 					alert(data.Error);
 				};
@@ -158,7 +114,6 @@ app.controller('myCtrl4', function($scope,$http) {
 		} else {
 			window.location='todoliste.html';
 		};
-
 	};
 	var json={
 		"login": sessionStorage.login,
@@ -175,7 +130,7 @@ app.controller('myCtrl4', function($scope,$http) {
 				};
 			};
 		} else {
-
+			alert(data.Error);
 		};
 	}).error(function(){
 		alert("! !");
