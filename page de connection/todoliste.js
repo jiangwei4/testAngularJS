@@ -182,4 +182,3 @@ app.controller('myCtrl4', function($scope,$http) {
 		return null ;
 	});
 });
-

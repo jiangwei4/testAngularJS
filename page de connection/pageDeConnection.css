@@ -38,6 +38,10 @@ body {
 	min-height: 100%;
 	margin: 0;
 	padding: 0;
+		margin-left:10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 body {
@@ -45,6 +49,10 @@ body {
 }
 
 footer {
+	margin-left:10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
 	display : table-row;
 	position: absolute; 
 	bottom: 0;

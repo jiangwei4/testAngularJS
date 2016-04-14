@@ -118,6 +118,8 @@ app.controller('myCtrl2', function($scope,$http) {
 	};
 });
 
+
+
 //encodage sha1
 function SHA1 (msg) {
 

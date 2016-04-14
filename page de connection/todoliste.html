@@ -16,8 +16,30 @@
 <body>
 	<div ng-app="myApp"> 
 		<div ng-controller="myCtrl">
-		<expander></expander>
+			<expander></expander>
 			<footer>
+
+
+			<!-- Load Facebook SDK for JavaScript -->
+<!--	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>  -->
+
+	<!-- Your share button code -->
+	<div class="fb-share-button" 
+		data-href="http://www.your-domain.com/your-page.html" 
+		data-layout="button_count">
+	</div> 
+
+
+				<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="InfoWebMaster">Tweet</a>
+				<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
 				<button  ng-click="ajouter()" class="w3-btn-block w3-round-large w3-purple">Add a new one</button>
 			</footer>
 
